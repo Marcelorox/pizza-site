@@ -51,33 +51,34 @@ function Header() {
     {
       id: 1,
       label: "Home",
-      path: "/home",
-    },
-    {
-      id: 2,
-      label: "Join our team",
-      path: "/home",
-    },
-    {
-      id: 3,
-      label: "Catering",
-      path: "/home",
+      path: "/",
     },
     {
       id: 4,
       label: "About us",
-      path: "/home",
+      path: "/",
+    },
+
+    {
+      id: 3,
+      label: "Catering",
+      path: "/",
     },
     {
       id: 5,
       label: "Franchising",
-      path: "/home",
+      path: "/",
+    },
+    {
+      id: 2,
+      label: "Join our team",
+      path: "/",
     },
   ];
 
   return (
     <>
-      <header className="flex bg-black w-full items-center p-4 justify-between">
+      <header className="z-50 flex items-center justify-between w-full p-2 bg-black/90">
         <div className="">
           <img
             src="https://www.viacapripizzas.com/wp-content/uploads/Via-Capri-logo_fonte_branca.png"
@@ -87,7 +88,7 @@ function Header() {
         </div>
 
         <div className="flex items-center">
-          <button className="flex h-10 items-center p-4 bg-yellow-300 mr-4 text-black hover:text-white hover:bg-yellow-500">
+          <button className="flex items-center h-10 p-4 mr-4 text-black bg-yellow-300 hover:text-white hover:bg-yellow-500">
             Start order
           </button>
           <Hamburger color="white" toggled={isOpen} toggle={setOpen} rounded />
@@ -96,7 +97,7 @@ function Header() {
 
       {isOpen && (
         <motion.div
-          className="box w-full h-[90%] bg-black"
+          className="box w-full h-[100vh] bg-black/90"
           variants={menuVariant}
           initial="hidden"
           animate="visible"
@@ -105,7 +106,7 @@ function Header() {
             <div className="w-[50%] flex flex-col"></div>
             <div className="flex w-[50%] flex-col" ref={ref}>
               <motion.div
-                className="box w-full"
+                className="w-full box"
                 variants={boxVariant}
                 initial="hidden"
                 animate="visible"
@@ -114,11 +115,11 @@ function Header() {
                   {headerLinks.map(({ id, label, path }) => (
                     <li
                       key={id}
-                      className="flex mb-4 justify-start cursor-pointer mr-11 "
+                      className="flex justify-start mb-4 cursor-pointer mr-11 "
                     >
                       <a
                         href={path}
-                        className="text-white  uppercase hover:text-yellow-400"
+                        className="text-white uppercase hover:text-yellow-400"
                       >
                         {label}
                       </a>
@@ -137,6 +138,7 @@ function Header() {
                       <FaSquareInstagram />
                     </span>
                   </a>
+
                   <a href="" className="">
                     <span className="text-[30px] ">
                       <FaPhoneSquare className="text-yellow-300" />
