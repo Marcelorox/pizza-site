@@ -119,7 +119,7 @@ function Header() {
                     >
                       <a
                         href={path}
-                        className="text-white uppercase hover:text-yellow-400"
+                        className="text-white uppercase hover:text-yellow-400 font-sub_title"
                       >
                         {label}
                       </a>

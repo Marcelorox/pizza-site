@@ -13,9 +13,16 @@ interface SlideProps {
   title: string;
   description: string;
   buttonLabel: string;
+  index: number;
 }
 
-function Slide({ children, title, description, buttonLabel }: SlideProps) {
+function Slide({
+  children,
+  title,
+  description,
+  buttonLabel,
+  index,
+}: SlideProps) {
   const titleVariant = {
     hidden: {
       opacity: 0,
@@ -57,27 +64,29 @@ function Slide({ children, title, description, buttonLabel }: SlideProps) {
 
   return (
     <SwiperSlide className="relative flex">
-      <div className="absolute inset-0 z-10 flex flex-col justify-center mt-[0rem]">
-        <motion.h2
-          className="text-5xl font-bold text-center text-yellow-300 underline drop-shadow-2xl underline-offset-5 z-99 font-title"
-          variants={titleVariant}
-          initial="hidden"
-          animate={control}
-          ref={ref}
-        >
-          {title}
-        </motion.h2>
-        <div className="flex justify-center w-full">
-          <motion.button
-            className="border-[2px] border-white hover:bg-yellow-300 bg-opacity-40 mt-4 bg-yellow-500 ] font-sub_title text-3xl font-bold  min-w-[1px] text-white text-center items-center justify-center flex w-[70%] md:w-[50%]"
-            variants={buttonVariant}
+      {index === 0 && (
+        <div className="absolute inset-0 z-10 flex flex-col justify-center mt-[0rem]">
+          <motion.h2
+            className="text-5xl font-bold text-center text-yellow-300 underline drop-shadow-2xl underline-offset-5 z-99 font-title"
+            variants={titleVariant}
             initial="hidden"
             animate={control}
+            ref={ref}
           >
-            {buttonLabel}
-          </motion.button>
+            {title}
+          </motion.h2>
+          <div className="flex justify-center w-full">
+            <motion.button
+              className="border-[2px] border-white hover:bg-yellow-300 bg-opacity-40 mt-4 bg-yellow-500 ] font-sub_title text-3xl font-bold  min-w-[1px] text-white text-center items-center justify-center flex w-[70%] md:w-[50%]"
+              variants={buttonVariant}
+              initial="hidden"
+              animate={control}
+            >
+              {buttonLabel}
+            </motion.button>
+          </div>
         </div>
-      </div>
+      )}
       {children}
     </SwiperSlide>
   );
@@ -189,9 +198,10 @@ function App() {
                   title={slide.title}
                   description={slide.description}
                   buttonLabel={slide.buttonLabel}
+                  index={index}
                 >
                   <img
-                    className="h-[36rem] object-cover md:h-[91vh] w-full"
+                    className="h-[36rem] object-cover md:h-[92.5vh] w-full"
                     src={slide.image}
                     alt=""
                   />
