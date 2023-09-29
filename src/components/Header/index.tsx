@@ -5,10 +5,12 @@ import { useEffect, useState } from "react";
 import { FaSquareWhatsapp } from "react-icons/fa6";
 import { FaSquareInstagram } from "react-icons/fa6";
 import { FaPhoneSquare } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Header() {
   const [isOpen, setOpen] = useState(false);
   const control = useAnimation();
+  const isOrderPage = location.pathname === "/Order";
 
   const menuVariant = {
     hidden: {
@@ -62,12 +64,12 @@ function Header() {
     {
       id: 3,
       label: "Catering",
-      path: "/",
+      path: "https://www.viacapripizzeria.getsauce.com/",
     },
     {
       id: 5,
       label: "Franchising",
-      path: "/",
+      path: "https://www.viacapripizzeria.getsauce.com/",
     },
     {
       id: 2,
@@ -83,72 +85,76 @@ function Header() {
           <img
             src="https://www.viacapripizzas.com/wp-content/uploads/Via-Capri-logo_fonte_branca.png"
             alt=""
-            className="h-[2rem]"
+            className="h-[2rem] hover:scale-110 transition duration-300 "
           />
         </div>
 
         <div className="flex items-center">
-          <button className="flex items-center h-10 p-4 mr-4 text-black bg-yellow-300 hover:text-white hover:bg-yellow-500">
-            Start order
-          </button>
+          {!isOrderPage && (
+            <button className="flex items-center h-10 p-4 mr-4 text-black transition duration-300 bg-yellow-300 hover:scale-110 hover:text-white hover:bg-yellow-500">
+              <Link to="/Order">Start order</Link>
+            </button>
+          )}
+
           <Hamburger color="white" toggled={isOpen} toggle={setOpen} rounded />
         </div>
       </header>
-
       {isOpen && (
-        <motion.div
-          className="box w-full h-[100vh] bg-black/90"
-          variants={menuVariant}
-          initial="hidden"
-          animate="visible"
-        >
-          <div className="flex w-full">
-            <div className="w-[50%] flex flex-col"></div>
-            <div className="flex w-[50%] flex-col" ref={ref}>
-              <motion.div
-                className="w-full box"
-                variants={boxVariant}
-                initial="hidden"
-                animate="visible"
-              >
-                <ul className="flex flex-col p-4 h-max">
-                  {headerLinks.map(({ id, label, path }) => (
-                    <li
-                      key={id}
-                      className="flex justify-start mb-4 cursor-pointer mr-11 "
-                    >
-                      <a
-                        href={path}
-                        className="text-white uppercase hover:text-yellow-400 font-sub_title"
+        <>
+          <motion.div
+            className="box w-full h-[100vh] bg-black/90"
+            variants={menuVariant}
+            initial="hidden"
+            animate="visible"
+          >
+            <div className="flex w-full">
+              <div className="w-[50%] flex flex-col"></div>
+              <div className="flex w-[50%] flex-col" ref={ref}>
+                <motion.div
+                  className="w-full box"
+                  variants={boxVariant}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  <ul className="flex flex-col p-4 h-max">
+                    {headerLinks.map(({ id, label, path }) => (
+                      <li
+                        key={id}
+                        className="flex justify-start mb-4 cursor-pointer mr-11 "
                       >
-                        {label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex mt-4 p-4 justify-between w-[65%]">
-                  <a href="" className="text-yellow-300">
-                    <span className="text-[30px] ">
-                      <FaSquareWhatsapp />
-                    </span>
-                  </a>
+                        <a
+                          href={path}
+                          className="text-white uppercase hover:text-yellow-400 font-sub_title"
+                        >
+                          {label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex mt-4 p-4 justify-between w-[65%]">
+                    <a href="" className="text-yellow-300">
+                      <span className="text-[30px] ">
+                        <FaSquareWhatsapp />
+                      </span>
+                    </a>
 
-                  <a href="" className="text-yellow-300">
-                    <span className="text-[30px] ">
-                      <FaSquareInstagram />
-                    </span>
-                  </a>
+                    <a href="" className="text-yellow-300">
+                      <span className="text-[30px] ">
+                        <FaSquareInstagram />
+                      </span>
+                    </a>
 
-                  <a href="" className="">
-                    <span className="text-[30px] ">
-                      <FaPhoneSquare className="text-yellow-300" />
-                    </span>
-                  </a>
-                </div>
-              </motion.div>
+                    <a href="" className="">
+                      <span className="text-[30px] ">
+                        <FaPhoneSquare className="text-yellow-300" />
+                      </span>
+                    </a>
+                  </div>
+                </motion.div>
+              </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </>
       )}
     </>
   );

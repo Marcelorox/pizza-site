@@ -7,6 +7,8 @@ import "swiper/css/autoplay";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Header from "./components/Header";
+import { Link } from "react-router-dom";
+import FooterPages from "./components/Footer";
 
 interface SlideProps {
   children: React.ReactNode;
@@ -26,86 +28,16 @@ function Slide({
   const titleVariant = {
     hidden: {
       opacity: 0,
-      y: 0,
+      x: 100,
     },
     visible: {
       opacity: 1,
-      y: 0,
+      x: 0,
       transition: {
         duration: 1.3,
       },
     },
   };
-
-  const buttonVariant = {
-    hidden: {
-      opacity: 0.2,
-      y: 70,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 1.3,
-      },
-    },
-  };
-
-  const [ref, inView] = useInView();
-  const control = useAnimation();
-
-  useEffect(() => {
-    if (inView) {
-      control.start("visible");
-    } else {
-      control.start("hidden");
-    }
-  }, [control, inView]);
-
-  return (
-    <SwiperSlide className="relative flex">
-      {index === 0 && (
-        <div className="absolute inset-0 z-10 flex flex-col justify-center mt-[0rem]">
-          <motion.h2
-            className="text-5xl font-bold text-center text-yellow-300 underline drop-shadow-2xl underline-offset-5 z-99 font-title"
-            variants={titleVariant}
-            initial="hidden"
-            animate={control}
-            ref={ref}
-          >
-            {title}
-          </motion.h2>
-          <div className="flex justify-center w-full">
-            <motion.button
-              className="border-[2px] border-white hover:bg-yellow-300 bg-opacity-40 mt-4 bg-yellow-500 ] font-sub_title text-3xl font-bold  min-w-[1px] text-white text-center items-center justify-center flex w-[70%] md:w-[50%]"
-              variants={buttonVariant}
-              initial="hidden"
-              animate={control}
-            >
-              {buttonLabel}
-            </motion.button>
-          </div>
-        </div>
-      )}
-      {children}
-    </SwiperSlide>
-  );
-}
-
-function App() {
-  const customStyles: CSSProperties = {
-    ["--swiper-pagination-color" as string]: "#ffff01",
-    ["--swiper-pagination-bullet-inactive-color" as string]: "#000000",
-    ["--swiper-pagination-bullet-inactive-opacity" as string]: "1",
-  };
-
-  const handleSlideChange = () => {};
-
-  const [imageDimensions, setImageDimensions] = useState({
-    width: 0,
-    height: 0,
-  });
-
   useEffect(() => {
     const getImageDimensions = () => {
       const img = document.querySelector(
@@ -133,13 +65,92 @@ function App() {
     };
   }, []);
 
+  const [imageDimensions, setImageDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
+
+  const buttonVariant = {
+    hidden: {
+      opacity: 0,
+      y: 70,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1.7,
+      },
+    },
+  };
+
+  const [ref, inView] = useInView();
+  const control = useAnimation();
+
+  useEffect(() => {
+    if (inView) {
+      control.start("visible");
+    } else {
+      control.start("hidden");
+    }
+  }, [control, inView]);
+
+  return (
+    <SwiperSlide className="relative flex">
+      {index === 0 && (
+        <div
+          className="absolute z-10 bg-black bg-opacity-30"
+          style={{
+            width: `${imageDimensions.width}px`,
+            height: `${imageDimensions.height}px`,
+          }}
+        >
+          <div className="absolute inset-0 z-10 flex flex-col justify-center mt-[0rem]">
+            <motion.h2
+              className="text-6xl font-bold text-center text-yellow-300 underline drop-shadow-2xl underline-offset-5 z-99 font-sub_title"
+              variants={titleVariant}
+              initial="hidden"
+              animate={control}
+              ref={ref}
+            >
+              {title}
+            </motion.h2>
+            <div className="flex justify-center w-full">
+              <motion.button
+                className="border-[2px] border-white font-title_topic hover:bg-yellow-300 bg-opacity-40 mt-10 bg-yellow-500 ] text-3xl min-w-[1px] text-white text-center items-center justify-center flex w-[70%] md:w-[50%]"
+                variants={buttonVariant}
+                initial="hidden"
+                animate={control}
+              >
+                <Link to="/Order">{buttonLabel}</Link>
+              </motion.button>
+            </div>
+          </div>
+        </div>
+      )}
+      <div
+        className={`relative ${index === 0 ? "bg-black bg-opacity-50" : ""}`}
+      ></div>
+      {children}
+    </SwiperSlide>
+  );
+}
+
+function App() {
+  const customStyles: CSSProperties = {
+    ["--swiper-pagination-color" as string]: "#ffff01",
+    ["--swiper-pagination-bullet-inactive-color" as string]: "#000000",
+    ["--swiper-pagination-bullet-inactive-opacity" as string]: "1",
+  };
+
+  const handleSlideChange = () => {};
+
   const slidesData = [
     {
       image: "/ViaCapriPizzeria_Hero.jpg",
-      title: "Slide 1 Title",
-      description:
-        "Descrição para o Slide 1. Adicione seu texto personalizado aqui.",
-      buttonLabel: "Button 1 Label",
+      title: "ORDER ONLINE",
+      description: "WELCOME TO OUR SITE",
+      buttonLabel: "ORDER NOW",
     },
     {
       image: "/ViaCapriPizzeria_Mineira.jpg",
@@ -171,6 +182,15 @@ function App() {
     },
   ];
 
+  const [ref, inView] = useInView({
+    triggerOnce: true, // Animation triggers only once when it comes into view
+    threshold: 0.2, // Set the threshold as needed
+  });
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 3 } },
+  };
   return (
     <div>
       <div className="w-full h-max">
@@ -209,58 +229,79 @@ function App() {
               </SwiperSlide>
             ))}
           </Swiper>
-
-          {/* <div
-            className="absolute z-10 bg-black opacity-30"
-            style={{
-              width: `${imageDimensions.width}px`,
-              height: `${imageDimensions.height}px`,
-            }}
-          ></div> */}
         </div>
 
         <div className="flex flex-col w-full p-4 px-11 h-max">
           <div className="h-max w-[100%] bg-black justify-center flex ">
-            <div className="flex justify-center items-center flex-col bg-black  w-[100%] p-4">
-              <h2 className="text-xl text-yellow-300 font-title_topic drop-shadow-lg">
+            <div
+              ref={ref}
+              className="flex justify-center items-center flex-col bg-black w-[100%] p-4"
+            >
+              <motion.h2
+                className="text-xl text-yellow-300 font-title_topic drop-shadow-lg"
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                variants={fadeInUp}
+              >
                 Our history
-              </h2>
-              <h1 className="text-3xl text-yellow-300 font-sub_title">
+              </motion.h2>
+              <motion.h1
+                className="text-3xl text-yellow-300 font-sub_title"
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                variants={fadeInUp}
+              >
                 ABOUT US
-              </h1>
-              <span className="flex w-[75%] text-center text-white">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
-                accusantium, eaque molestias incidunt minus dolorem possimus
-                labore porro, non nisi vitae facere? Corrupti minus quos
-                tempora, doloremque optio officiis nesciunt? Lorem ipsum dolor
-                sit amet consectetur adipisicing elit. Sapiente porro reiciendis
-                temporibus rem earum laudantium obcaecati ipsa dicta repellat
-                facilis et eligendi minima ipsam modi molestias adipisci,
-                ratione repellendus nesciunt?
-              </span>
+              </motion.h1>
+              <motion.span
+                className="flex w-[75%] text-center text-white"
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                variants={fadeInUp}
+              >
+                At ViaCapriPizzas, we have been serving up delectable pizza
+                creations with passion and dedication. Our mission is simple: to
+                provide you with the most mouthwatering, handcrafted pizzas that
+                will satisfy your cravings and leave you wanting more.
+              </motion.span>
             </div>
           </div>
+
           <div className="h-max w-[100%] bg-black justify-center flex p-6 mt-10">
-            <div className="flex justify-center items-center flex-col bg-black  w-[100%]">
-              <h2 className="mt-4 text-xl text-yellow-300 font-title_topic drop-shadow-lg">
-                Our history
-              </h2>
-              <h1 className="text-3xl text-yellow-300 font-sub_title">
-                ABOUT US
-              </h1>
-              <span className="flex w-[75%] text-center text-gray-300">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
-                accusantium, eaque molestias incidunt minus dolorem possimus
-                labore porro, non nisi vitae facere? Corrupti minus quos
-                tempora, doloremque optio officiis nesciunt? Lorem ipsum dolor
-                sit amet consectetur adipisicing elit. Sapiente porro reiciendis
-                temporibus rem earum laudantium obcaecati ipsa dicta repellat
-                facilis et eligendi minima ipsam modi molestias adipisci,
-                ratione repellendus nesciunt?
-              </span>
+            <div className="flex justify-center items-center flex-col bg-black w-[100%] p-4">
+              <motion.h2
+                className="text-xl text-yellow-300 font-title_topic drop-shadow-lg"
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                variants={fadeInUp}
+              >
+                Commitment
+              </motion.h2>
+              <motion.h1
+                className="text-3xl text-yellow-300 font-sub_title"
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                variants={fadeInUp}
+              >
+                PROVIDE TO CLIENTS
+              </motion.h1>
+              <motion.span
+                className="flex w-[75%] text-center text-white"
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                variants={fadeInUp}
+              >
+                We look forward to serving you and becoming your go-to
+                destination for the best pizza in town. Whether you prefer the
+                convenience of ordering online or the cozy atmosphere of our
+                pizzerias, ViaCapriPizzas is here to satisfy your pizza desires.
+                Thank you for choosing us, and we can't wait to delight your
+                taste buds with our mouthwatering creations!.
+              </motion.span>
             </div>
           </div>
         </div>
+        <FooterPages />
       </div>
     </div>
   );
