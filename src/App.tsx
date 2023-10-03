@@ -7,8 +7,9 @@ import "swiper/css/autoplay";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Header from "./components/Header";
-import { Link } from "react-router-dom";
 import FooterPages from "./components/Footer";
+import { BsFillTelephoneFill } from "react-icons/bs";
+import { BiMap } from "react-icons/bi";
 
 interface SlideProps {
   children: React.ReactNode;
@@ -35,6 +36,7 @@ function Slide({
       x: 0,
       transition: {
         duration: 1.3,
+        delay: 0.2,
       },
     },
   };
@@ -80,11 +82,26 @@ function Slide({
       y: 0,
       transition: {
         duration: 1.7,
+        delay: 0.2,
+      },
+    },
+  };
+  const descVariant = {
+    hidden: {
+      opacity: 0,
+      y: -100,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 2,
+        delay: 0.2,
       },
     },
   };
 
-  const [ref, inView] = useInView();
+  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.5 });
   const control = useAnimation();
 
   useEffect(() => {
@@ -107,6 +124,15 @@ function Slide({
         >
           <div className="absolute inset-0 z-10 flex flex-col justify-center mt-[0rem]">
             <motion.h2
+              className="text-2xl text-center text-yellow-300 z-99 font-sub_title"
+              variants={descVariant}
+              initial="hidden"
+              animate={control}
+              ref={ref}
+            >
+              {description}
+            </motion.h2>
+            <motion.h2
               className="text-6xl font-bold text-center text-yellow-300 underline drop-shadow-2xl underline-offset-5 z-99 font-sub_title"
               variants={titleVariant}
               initial="hidden"
@@ -115,14 +141,16 @@ function Slide({
             >
               {title}
             </motion.h2>
-            <div className="flex justify-center w-full">
+            <div className="flex justify-center w-full transition duration-300 hover:scale-110">
               <motion.button
-                className="border-[2px] border-white font-title_topic hover:bg-yellow-300 bg-opacity-40 mt-10 bg-yellow-500 ] text-3xl min-w-[1px] text-white text-center items-center justify-center flex w-[70%] md:w-[50%]"
+                className="border-[2px] border-white font-serif rounded-md hover:bg-yellow-500 bg-opacity-40 hover:bg-opacity-100  mt-10 bg-yellow-500 ] text-3xl min-w-[1px] text-white text-center items-center justify-center flex w-[70%] md:w-[50%]"
                 variants={buttonVariant}
                 initial="hidden"
                 animate={control}
               >
-                <Link to="/Order">{buttonLabel}</Link>
+                <a href="https://www.viacapripizzeria.getsauce.com/">
+                  {buttonLabel}
+                </a>
               </motion.button>
             </div>
           </div>
@@ -135,7 +163,6 @@ function Slide({
     </SwiperSlide>
   );
 }
-
 function App() {
   const customStyles: CSSProperties = {
     ["--swiper-pagination-color" as string]: "#ffff01",
@@ -183,13 +210,13 @@ function App() {
   ];
 
   const [ref, inView] = useInView({
-    triggerOnce: true, // Animation triggers only once when it comes into view
-    threshold: 0.2, // Set the threshold as needed
+    triggerOnce: true,
+    threshold: 0.1,
   });
 
   const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 3 } },
+    hidden: { opacity: 0, y: 100 },
+    visible: { opacity: 1, y: 0, transition: { duration: 1, delay: 0.2 } },
   };
   return (
     <div>
@@ -231,22 +258,52 @@ function App() {
           </Swiper>
         </div>
 
-        <div className="flex flex-col w-full p-4 px-11 h-max">
-          <div className="h-max w-[100%] bg-black justify-center flex ">
+        <div className="flex flex-col w-full p-4 px-11 h-max ">
+          <a
+            href="tel:+4075071705"
+            className="transition duration-300 hover:scale-90"
+          >
+            <div className="flex h-[2rem] mt-2 items-center justify-center bg-black rounded-md">
+              <span className="text-yellow-300">
+                <BsFillTelephoneFill />
+              </span>
+              <span className="ml-2 text-yellow-300">407-507-1705</span>
+            </div>
+          </a>
+
+          <a
+            className="mt-8 transition duration-300 hover:scale-90"
+            target="_blank"
+            href="https://maps.app.goo.gl/6GYErBFoYGL9FVmY8"
+          >
+            <div className="flex justify-center w-full bg-black rounded-md h-max">
+              <div className="flex justify-center items-center flex-col rounded-md bg-black w-[100%] p-4 ">
+                <span className="text-yellow-300 text-7xl">
+                  <BiMap />
+                </span>
+
+                <span className="mt-2 text-white font-extralight">
+                  PRESS FOR LOCATION
+                </span>
+              </div>
+            </div>
+          </a>
+
+          <div className="h-max w-[100%]  bg-black justify-center flex mt-10 p-2">
             <div
               ref={ref}
               className="flex justify-center items-center flex-col bg-black w-[100%] p-4"
             >
-              <motion.h2
+              {/* <motion.h2
                 className="text-xl text-yellow-300 font-title_topic drop-shadow-lg"
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
                 variants={fadeInUp}
               >
                 Our history
-              </motion.h2>
+              </motion.h2> */}
               <motion.h1
-                className="text-3xl text-yellow-300 font-sub_title"
+                className="text-2xl text-yellow-300 font-sub_title"
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
                 variants={fadeInUp}
@@ -266,24 +323,23 @@ function App() {
               </motion.span>
             </div>
           </div>
-
-          <div className="h-max w-[100%] bg-black justify-center flex p-6 mt-10">
+          <div className="h-max w-[100%] bg-black justify-center flex p-2 mt-10">
             <div className="flex justify-center items-center flex-col bg-black w-[100%] p-4">
-              <motion.h2
+              {/* <motion.h2
                 className="text-xl text-yellow-300 font-title_topic drop-shadow-lg"
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
                 variants={fadeInUp}
               >
                 Commitment
-              </motion.h2>
+              </motion.h2> */}
               <motion.h1
-                className="text-3xl text-yellow-300 font-sub_title"
+                className="text-2xl text-yellow-300 font-sub_title"
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
                 variants={fadeInUp}
               >
-                PROVIDE TO CLIENTS
+                Our mission
               </motion.h1>
               <motion.span
                 className="flex w-[75%] text-center text-white"

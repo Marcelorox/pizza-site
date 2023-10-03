@@ -1,16 +1,15 @@
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Squash as Hamburger } from "hamburger-react";
-import { useEffect, useState } from "react";
-import { FaSquareWhatsapp } from "react-icons/fa6";
+import { useCallback, useEffect, useState } from "react";
+import { FaSquareFacebook } from "react-icons/fa6";
 import { FaSquareInstagram } from "react-icons/fa6";
-import { FaPhoneSquare } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaTwitterSquare } from "react-icons/fa";
 
 function Header() {
   const [isOpen, setOpen] = useState(false);
   const control = useAnimation();
-  const isOrderPage = location.pathname === "/Order";
+  const isCateringPage = location.pathname === "/Catering";
 
   const menuVariant = {
     hidden: {
@@ -49,6 +48,26 @@ function Header() {
     }
   }, [control, inView]);
 
+  const handleScroll = useCallback(() => {
+    if (isOpen) {
+      setOpen(false);
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (inView) {
+      control.start("visible");
+    } else {
+      control.start("hidden");
+    }
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [control, inView, isOpen, handleScroll]);
+
   const headerLinks = [
     {
       id: 1,
@@ -56,31 +75,25 @@ function Header() {
       path: "/",
     },
     {
-      id: 4,
+      id: 2,
       label: "About us",
-      path: "/",
+      path: "/AboutUs",
     },
-
     {
       id: 3,
-      label: "Catering",
-      path: "https://www.viacapripizzeria.getsauce.com/",
-    },
-    {
-      id: 5,
-      label: "Franchising",
-      path: "https://www.viacapripizzeria.getsauce.com/",
-    },
-    {
-      id: 2,
       label: "Join our team",
-      path: "/",
+      path: "/JoinOurTeam",
+    },
+    {
+      id: 4,
+      label: "Catering",
+      path: "/Catering",
     },
   ];
 
   return (
     <>
-      <header className="z-50 flex items-center justify-between w-full p-2 bg-black/90">
+      <header className="z-50 flex items-center justify-between w-full p-2 bg-[#191919]">
         <div className="">
           <img
             src="https://www.viacapripizzas.com/wp-content/uploads/Via-Capri-logo_fonte_branca.png"
@@ -90,9 +103,11 @@ function Header() {
         </div>
 
         <div className="flex items-center">
-          {!isOrderPage && (
-            <button className="flex items-center h-10 p-4 mr-4 text-black transition duration-300 bg-yellow-300 hover:scale-110 hover:text-white hover:bg-yellow-500">
-              <Link to="/Order">Start order</Link>
+          {!isCateringPage && (
+            <button className="flex items-center h-10 p-4 mr-4 font-serif text-black transition duration-300 bg-yellow-300 rounded hover:scale-110 hover:text-white hover:bg-yellow-500">
+              <a href="https://www.viacapripizzeria.getsauce.com/">
+                Start order
+              </a>
             </button>
           )}
 
@@ -102,25 +117,27 @@ function Header() {
       {isOpen && (
         <>
           <motion.div
-            className="box w-full h-[100vh] bg-black/90"
+            className="box w-full md:absolute right-0 md:w-[20%] md:z-20 h-[100vh] bg-[#191919]"
             variants={menuVariant}
             initial="hidden"
             animate="visible"
           >
-            <div className="flex w-full">
-              <div className="w-[50%] flex flex-col"></div>
-              <div className="flex w-[50%] flex-col" ref={ref}>
+            <div className="flex flex-col sm:absolute sm:right-10 lg:right-8 items-end w-[30%] md:w-[60%]">
+              <div
+                className="flex w-[80%] sm:relative md:w-[100%] ml-[8%] md:ml-[0%]  flex-col md:mr-[2%]"
+                ref={ref}
+              >
                 <motion.div
-                  className="w-full box"
+                  className="sm:absolute flex flex-col items-end right-[15%] w-full box"
                   variants={boxVariant}
                   initial="hidden"
                   animate="visible"
                 >
-                  <ul className="flex flex-col p-4 h-max">
+                  <ul className="flex flex-col p-4 w-max md:mx-auto">
                     {headerLinks.map(({ id, label, path }) => (
                       <li
                         key={id}
-                        className="flex justify-start mb-4 cursor-pointer mr-11 "
+                        className="flex justify-start mb-4 cursor-pointer "
                       >
                         <a
                           href={path}
@@ -131,24 +148,38 @@ function Header() {
                       </li>
                     ))}
                   </ul>
-                  <div className="flex mt-4 p-4 justify-between w-[65%]">
-                    <a href="" className="text-yellow-300">
-                      <span className="text-[30px] ">
-                        <FaSquareWhatsapp />
-                      </span>
-                    </a>
+                  <div className="flex flex-col min-w-[33%] md:min-w-[56%]">
+                    <span className="text-base text-white font-sub_title">
+                      FOLLOW US:
+                    </span>
+                    <div className="flex justify-between w-full mt-2">
+                      <a
+                        href="https://www.facebook.com/viacapripizzas/?locale=us"
+                        className="mr-2 text-yellow-300 transition duration-300 hover:scale-110"
+                      >
+                        <span className="text-[30px] ">
+                          <FaSquareFacebook />
+                        </span>
+                      </a>
 
-                    <a href="" className="text-yellow-300">
-                      <span className="text-[30px] ">
-                        <FaSquareInstagram />
-                      </span>
-                    </a>
+                      <a
+                        href="https://www.instagram.com/viacapripizzas/?hl=us"
+                        className="mr-2 text-yellow-300 transition duration-300 hover:scale-110"
+                      >
+                        <span className="text-[30px] ">
+                          <FaSquareInstagram />
+                        </span>
+                      </a>
 
-                    <a href="" className="">
-                      <span className="text-[30px] ">
-                        <FaPhoneSquare className="text-yellow-300" />
-                      </span>
-                    </a>
+                      <a
+                        href="https://twitter.com/viacapri"
+                        className="transition duration-300 hover:scale-110"
+                      >
+                        <span className="text-[30px]">
+                          <FaTwitterSquare className="text-yellow-300" />
+                        </span>
+                      </a>
+                    </div>
                   </div>
                 </motion.div>
               </div>

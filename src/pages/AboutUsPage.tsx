@@ -7,12 +7,16 @@ const AboutUs: React.FC = () => {
   return (
     <>
       <Header />
+      <section className="py-16 text-white border-b-4 border-yellow-500 bg-black/90">
+        <div className="container mx-auto text-center">
+          <h1 className="mb-4 text-5xl font-bold text-yellow-500">About Us</h1>
+          <p className="text-xl">
+            Welcome to ViaCapriPizzas - Your Premier Destination for Exceptional
+            Pizza Delights!
+          </p>
+        </div>
+      </section>
       <div className="p-8 bg-white">
-        <h1 className="mb-4 text-3xl font-semibold">About Us</h1>
-        <h1 className="mb-4 text-2xl font-bold">
-          Welcome to ViaCapriPizzas - Your Premier Destination for Exceptional
-          Pizza Delights!
-        </h1>
         <p className="text-gray-700">
           We are thrilled to extend a warm welcome to our new clients, and we're
           excited that you're considering placing your orders with us, whether
@@ -25,7 +29,9 @@ const AboutUs: React.FC = () => {
           with the most mouthwatering, handcrafted pizzas that will satisfy your
           cravings and leave you wanting more.
         </p>
-        <h2 className="mt-4 text-xl font-bold">Ordering Online:</h2>
+        <h2 className="mt-4 text-xl font-bold text-yellow-500">
+          Ordering Online:
+        </h2>
         <ul className="mt-2 ml-6 list-disc">
           <li>
             <strong>Convenience:</strong> Order from the comfort of your home or
@@ -48,7 +54,9 @@ const AboutUs: React.FC = () => {
             clicks.
           </li>
         </ul>
-        <h2 className="mt-4 text-xl font-bold">Ordering In Person:</h2>
+        <h2 className="mt-4 text-xl font-bold text-yellow-500">
+          Ordering In Person:
+        </h2>
         <p className="mt-2">
           For those who prefer a personal touch, visit our welcoming pizzerias
           to experience our delicious pizzas firsthand. Our friendly staff is
@@ -62,11 +70,6 @@ const AboutUs: React.FC = () => {
           to satisfy your pizza desires. Thank you for choosing us, and we can't
           wait to delight your taste buds with our mouthwatering creations!
         </p>
-        <h2 className="mt-10 mb-2 text-xl font-semibold">Our Kitchen</h2>
-        <div
-          className="bg-center bg-cover h-96"
-          style={{ backgroundImage: "url('/pizza.jpeg')" }}
-        ></div>
       </div>
       <FooterPages />
     </>
