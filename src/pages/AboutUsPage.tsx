@@ -5,7 +5,7 @@ import FooterPages from "../components/Footer";
 
 const AboutUs: React.FC = () => {
   return (
-    <>
+    <div className="relative h-screen">
       <Header />
       <section className="py-16 text-white border-b-4 border-yellow-500 bg-black/90">
         <div className="container mx-auto text-center">
@@ -71,8 +71,11 @@ const AboutUs: React.FC = () => {
           wait to delight your taste buds with our mouthwatering creations!
         </p>
       </div>
-      <FooterPages />
-    </>
+
+      <div className="mt-[10%]">
+        <FooterPages />
+      </div>
+    </div>
   );
 };
 

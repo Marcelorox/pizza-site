@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const eventFormSchema = z.object({
   firstName: z.string().nonempty("First Name is required."),
@@ -41,35 +42,40 @@ export default function EventForm() {
   });
 
   const onSubmit = async (data: EventFormType) => {
-    const html = ` <div>
-    <h2>Event Details</h2>
-    <p><strong>First Name:</strong> ${data.firstName}</p>
-    <p><strong>Last Name:</strong> ${data.lastName}</p>
-    <p><strong>Email:</strong> ${data.email}</p>
-    <p><strong>Address:</strong> ${data.address}</p>
-    <p><strong>Phone Number:</strong> ${data.phoneNumber}</p>
-    <p><strong>Company:</strong> ${data.company}</p>
-    <p><strong>Contact Preference:</strong> ${data.contactPreference}</p>
-    <p><strong>Event Style:</strong> ${data.eventStyle}</p>
-    <p><strong>Nature of Event:</strong> ${data.natureOfEvent}</p>
-    <p><strong>Event Date:</strong> ${data.eventDate}</p>
-    <p><strong>Start Time:</strong> ${data.startTime}</p>
-    <p><strong>End Time:</strong> ${data.endTime}</p>
-    <p><strong>Number of People:</strong> ${data.numberOfPeople}</p>
-    <p><strong>Additional Info:</strong> ${data.additionalInfo || "N/A"}</p>
-    <p><strong>Referral Source:</strong> ${data.referralSource}</p>
-</div>`;
-    const sendEmailData = {
-      from: "Via Capri <test@siaob.com.br>",
-      to: "marcelo.paladino01@gmail.com",
-      subject: "Novo Cliente Solicitando Orcamento",
-      html,
-    };
-    const res = await axios.post(
-      "https://api-pizza.onrender.com/api/email",
-      sendEmailData
-    );
-    console.log(res);
+    try {
+      const html = ` <div>
+      <h2>Event Details</h2>
+      <p><strong>First Name:</strong> ${data.firstName}</p>
+      <p><strong>Last Name:</strong> ${data.lastName}</p>
+      <p><strong>Email:</strong> ${data.email}</p>
+      <p><strong>Address:</strong> ${data.address}</p>
+      <p><strong>Phone Number:</strong> ${data.phoneNumber}</p>
+      <p><strong>Company:</strong> ${data.company}</p>
+      <p><strong>Contact Preference:</strong> ${data.contactPreference}</p>
+      <p><strong>Event Style:</strong> ${data.eventStyle}</p>
+      <p><strong>Nature of Event:</strong> ${data.natureOfEvent}</p>
+      <p><strong>Event Date:</strong> ${data.eventDate}</p>
+      <p><strong>Start Time:</strong> ${data.startTime}</p>
+      <p><strong>End Time:</strong> ${data.endTime}</p>
+      <p><strong>Number of People:</strong> ${data.numberOfPeople}</p>
+      <p><strong>Additional Info:</strong> ${data.additionalInfo || "N/A"}</p>
+      <p><strong>Referral Source:</strong> ${data.referralSource}</p>
+  </div>`;
+      const sendEmailData = {
+        from: "Via Capri <cliente@viacapripizzas.com>",
+        to: "alphamafood@gmail.com",
+        subject: "Novo Cliente Solicitando Orcamento",
+        html,
+      };
+      const res = await axios.post(
+        "https://api-pizza.onrender.com/api/email",
+        sendEmailData
+      );
+      console.log(res);
+      toast.success("sucessfully sent");
+    } catch {
+      toast.error("an error occurred");
+    }
   };
 
   return (

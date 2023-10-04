@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, useState } from "react";
+import React, { CSSProperties, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -40,37 +40,6 @@ function Slide({
       },
     },
   };
-  useEffect(() => {
-    const getImageDimensions = () => {
-      const img = document.querySelector(
-        ".swiper-slide-active img"
-      ) as HTMLImageElement;
-      if (img) {
-        setImageDimensions({ width: img.width, height: img.height });
-      }
-    };
-
-    window.addEventListener("load", getImageDimensions);
-    window.addEventListener("resize", getImageDimensions);
-
-    const swiper = document.querySelector(".swiper-container") as HTMLElement;
-    if (swiper) {
-      swiper.addEventListener("transitionend", getImageDimensions);
-    }
-
-    return () => {
-      window.removeEventListener("load", getImageDimensions);
-      window.removeEventListener("resize", getImageDimensions);
-      if (swiper) {
-        swiper.removeEventListener("transitionend", getImageDimensions);
-      }
-    };
-  }, []);
-
-  const [imageDimensions, setImageDimensions] = useState({
-    width: 0,
-    height: 0,
-  });
 
   const buttonVariant = {
     hidden: {
@@ -115,13 +84,7 @@ function Slide({
   return (
     <SwiperSlide className="relative flex">
       {index === 0 && (
-        <div
-          className="absolute z-10 bg-black bg-opacity-30"
-          style={{
-            width: `${imageDimensions.width}px`,
-            height: `${imageDimensions.height}px`,
-          }}
-        >
+        <div className="absolute z-10 w-full h-full bg-black bg-opacity-30">
           <div className="absolute inset-0 z-10 flex flex-col justify-center mt-[0rem]">
             <motion.h2
               className="text-2xl text-center text-yellow-300 z-99 font-sub_title"
@@ -174,34 +137,34 @@ function App() {
 
   const slidesData = [
     {
-      image: "/ViaCapriPizzeria_Hero.jpg",
+      image: "./ViaCapriPizzeria_Hero.jpg",
       title: "ORDER ONLINE",
       description: "WELCOME TO OUR SITE",
       buttonLabel: "ORDER NOW",
     },
     {
-      image: "/ViaCapriPizzeria_Mineira.jpg",
+      image: "./ViaCapriPizzeria_Mineira.jpg",
       title: "Slide 2 Title",
       description:
         "Descrição para o Slide 2. Adicione seu texto personalizado aqui.",
       buttonLabel: "Button 2 Label",
     },
     {
-      image: "/ViaCapriPizzeria_Hawaiian.jpg",
+      image: "./ViaCapriPizzeria_Hawaiian.jpg",
       title: "Slide 2 Title",
       description:
         "Descrição para o Slide 2. Adicione seu texto personalizado aqui.",
       buttonLabel: "Button 2 Label",
     },
     {
-      image: "/ViaCapriPizzeria_ChickenCatupiry.jpg",
+      image: "./ViaCapriPizzeria_ChickenCatupiry.jpg",
       title: "Slide 2 Title",
       description:
         "Descrição para o Slide 2. Adicione seu texto personalizado aqui.",
       buttonLabel: "Button 2 Label",
     },
     {
-      image: "/ViaCapriPizzeria_Hawaiian.jpg",
+      image: "./ViaCapriPizzeria_Hawaiian.jpg",
       title: "Slide 2 Title",
       description:
         "Descrição para o Slide 2. Adicione seu texto personalizado aqui.",
@@ -219,7 +182,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="relative">
       <div className="w-full h-max">
         <Header />
         <div className="relative flex h-max">
@@ -357,8 +320,8 @@ function App() {
             </div>
           </div>
         </div>
-        <FooterPages />
       </div>
+      <FooterPages />
     </div>
   );
 }

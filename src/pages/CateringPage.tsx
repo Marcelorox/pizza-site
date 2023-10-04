@@ -27,7 +27,7 @@ function CateringPage() {
   };
 
   return (
-    <>
+    <div className="relative h-[100vh]">
       <Header />
       <section className="py-8 text-white border-b-4 border-yellow-500 bg-black/90">
         <div className="container mx-auto text-center">
@@ -81,7 +81,7 @@ function CateringPage() {
         </div>
       </div>
       <FooterPages />
-    </>
+    </div>
   );
 }
 

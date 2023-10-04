@@ -97,7 +97,7 @@ function Header() {
       <header className="z-50 flex items-center justify-between w-full p-2 bg-[#191919]">
         <div className="">
           <img
-            src="https://www.viacapripizzas.com/wp-content/uploads/Via-Capri-logo_fonte_branca.png"
+            src="./Via-Capri-logo_fonte_branca.png"
             alt=""
             className="h-[2rem] hover:scale-110 transition duration-300 "
           />
