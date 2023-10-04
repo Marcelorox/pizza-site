@@ -6,6 +6,7 @@ import App from "./App";
 import AboutUs from "./pages/AboutUsPage";
 import TeamPage from "./pages/TeamPage";
 import CateringPage from "./pages/CateringPage";
+import FormPage from "./pages/FormPage";
 
 const router = createBrowserRouter([
   {
@@ -13,16 +14,20 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/JoinOurTeam",
+    path: "/join-our-team",
     element: <TeamPage />,
   },
   {
-    path: "/AboutUs",
+    path: "/about-us",
     element: <AboutUs />,
   },
   {
-    path: "/Catering",
+    path: "/catering",
     element: <CateringPage />,
+  },
+  {
+    path: "/contact-us",
+    element: <FormPage />,
   },
 ]);
 

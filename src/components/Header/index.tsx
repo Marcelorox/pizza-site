@@ -9,7 +9,8 @@ import { FaTwitterSquare } from "react-icons/fa";
 function Header() {
   const [isOpen, setOpen] = useState(false);
   const control = useAnimation();
-  const isCateringPage = location.pathname === "/Catering";
+  const isCateringPage = location.pathname === "/catering";
+  const isContactUsPage = location.pathname === "/contact-us";
 
   const menuVariant = {
     hidden: {
@@ -77,17 +78,17 @@ function Header() {
     {
       id: 2,
       label: "About us",
-      path: "/AboutUs",
+      path: "/about-us",
     },
     {
       id: 3,
       label: "Join our team",
-      path: "/JoinOurTeam",
+      path: "/join-our-team",
     },
     {
       id: 4,
       label: "Catering",
-      path: "/Catering",
+      path: "/catering",
     },
   ];
 
@@ -103,7 +104,7 @@ function Header() {
         </div>
 
         <div className="flex items-center">
-          {!isCateringPage && (
+          {isCateringPage || isContactUsPage ? null : (
             <button className="flex items-center h-10 p-4 mr-4 font-serif text-black transition duration-300 bg-yellow-300 rounded hover:scale-110 hover:text-white hover:bg-yellow-500">
               <a href="https://www.viacapripizzeria.getsauce.com/">
                 Start order

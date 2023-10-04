@@ -211,13 +211,13 @@ function App() {
 
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
   });
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 100 },
     visible: { opacity: 1, y: 0, transition: { duration: 1, delay: 0.2 } },
   };
+
   return (
     <div>
       <div className="w-full h-max">
