@@ -3,7 +3,7 @@ import FooterPages from "../components/Footer";
 
 function TeamPage() {
   const sendEmail = () => {
-    const email = "pizzaviacapri@gmail.com";
+    const email = "alphamafood@gmail.com";
     const subject = "Application for the Team";
     const body = `
     Full Name: [Your Name]
@@ -29,9 +29,7 @@ function TeamPage() {
         <p className="mb-4">
           Fill in the information below and send an email to:
         </p>
-        <p className="mb-4 font-bold text-yellow-500">
-          pizzaviacapri@gmail.com
-        </p>
+        <p className="mb-4 font-bold text-yellow-500">alphamafood@gmail.com</p>
         <p className="mb-4">Instructions:</p>
         <ol className="text-left">
           <li>Set the "Subject" field to: Application to Join the Team</li>

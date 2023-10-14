@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function FooterPages() {
   return (
-    <footer className="absolute flex justify-between w-full py-6 text-white bg-black -bottom-50 ">
+    <footer className="absolute flex justify-between w-full py-6 text-white bg-black -bottom-52 ">
       <div className="flex">
         <p className="ml-10 text-xs">
           &copy; {new Date().getFullYear()} Viacappri. All rights reserved.

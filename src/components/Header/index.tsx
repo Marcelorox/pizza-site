@@ -77,18 +77,23 @@ function Header() {
     },
     {
       id: 2,
-      label: "About us",
-      path: "/about-us",
+      label: "Menu",
+      path: "https://www.viacapripizzeria.getsauce.com/",
     },
     {
       id: 3,
-      label: "Join our team",
-      path: "/join-our-team",
+      label: "About us",
+      path: "/about-us",
     },
     {
       id: 4,
       label: "Catering",
       path: "/catering",
+    },
+    {
+      id: 5,
+      label: "Join our team",
+      path: "/join-our-team",
     },
   ];
 

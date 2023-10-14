@@ -5,13 +5,13 @@ import FooterPages from "../components/Footer";
 
 const AboutUs: React.FC = () => {
   return (
-    <div className="relative h-screen">
+    <div className="relative">
       <Header />
       <section className="py-16 text-white border-b-4 border-yellow-500 bg-black/90">
         <div className="container mx-auto text-center">
           <h1 className="mb-4 text-5xl font-bold text-yellow-500">About Us</h1>
           <p className="text-xl">
-            Welcome to ViaCapriPizzas - Your Premier Destination for Exceptional
+            Welcome to Via Capri - Your Premier Destination for Exceptional
             Pizza Delights!
           </p>
         </div>
@@ -21,13 +21,13 @@ const AboutUs: React.FC = () => {
           We are thrilled to extend a warm welcome to our new clients, and we're
           excited that you're considering placing your orders with us, whether
           it's through our user-friendly website or in person at our inviting
-          pizzerias.
+          pizzeria.
         </p>
         <p className="mt-4">
-          At ViaCapriPizzas, we have been serving up delectable pizza creations
-          with passion and dedication. Our mission is simple: to provide you
-          with the most mouthwatering, handcrafted pizzas that will satisfy your
-          cravings and leave you wanting more.
+          At Via Capri, we have been serving up delectable pizza creations with
+          passion and dedication. Our mission is simple: to provide you with the
+          most mouthwatering, handcrafted pizzas that will satisfy your cravings
+          and leave you wanting more.
         </p>
         <h2 className="mt-4 text-xl font-bold text-yellow-500">
           Ordering Online:
@@ -58,23 +58,21 @@ const AboutUs: React.FC = () => {
           Ordering In Person:
         </h2>
         <p className="mt-2">
-          For those who prefer a personal touch, visit our welcoming pizzerias
-          to experience our delicious pizzas firsthand. Our friendly staff is
+          For those who prefer a personal touch, visit our welcoming pizzeria to
+          experience our delicious pizzas firsthand. Our friendly staff is
           always ready to assist you in choosing the perfect pizza for your
           cravings.
         </p>
         <p className="mt-4">
           We look forward to serving you and becoming your go-to destination for
           the best pizza in town. Whether you prefer the convenience of ordering
-          online or the cozy atmosphere of our pizzerias, ViaCapriPizzas is here
-          to satisfy your pizza desires. Thank you for choosing us, and we can't
-          wait to delight your taste buds with our mouthwatering creations!
+          online or the cozy atmosphere of our pizzeria, Via Capri is here to
+          satisfy your taste desires. Thank you for choosing us! We can't wait
+          to delight your taste buds with our mouthwatering creations!
         </p>
       </div>
 
-      <div className="mt-[10%]">
-        <FooterPages />
-      </div>
+      <FooterPages />
     </div>
   );
 };
