@@ -35,7 +35,7 @@ const Modal = ({ children }: ModalComponent) => {
       onClick={closeModal}
     >
       <div className="relative w-full md:w-[50%] mt-24 p-8">
-        <img src="./popup.png" alt="image-popup" />
+        <img src="/popup.png" alt="image-popup" />
         <button
           className="absolute font-serif text-white transition duration-300 sm:text-xl md:text-3xl left-12 top-10 hover:text-yellow-500 hover:scale-110"
           onClick={closeModal}
