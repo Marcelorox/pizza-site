@@ -204,7 +204,7 @@ function App() {
             pagination={{ clickable: true }}
             onSlideChange={handleSlideChange}
             autoplay={{
-              delay: 1000,
+              delay: 5000,
               pauseOnMouseEnter: false,
               stopOnLastSlide: false,
               disableOnInteraction: false,
