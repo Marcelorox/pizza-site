@@ -71,7 +71,7 @@ function Slide({
     },
   };
 
-  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.5 });
+  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.4 });
   const control = useAnimation();
 
   useEffect(() => {
@@ -88,7 +88,7 @@ function Slide({
         <div className="absolute z-10 w-full h-full bg-black bg-opacity-30">
           <div className="absolute inset-0 z-10 flex flex-col justify-center mt-[0rem]">
             <motion.h2
-              className="text-center text-yellow-300 text-1xl md:text-2xl z-99 font-sub_title"
+              className="text-center text-yellow-300 underline text-1xl md:text-6xl z-99 underline-offset-5 font-sub_title"
               variants={descVariant}
               initial="hidden"
               animate={control}
@@ -97,7 +97,7 @@ function Slide({
               {description}
             </motion.h2>
             <motion.h2
-              className="text-6xl font-bold text-center text-yellow-300 underline drop-shadow-2xl underline-offset-5 z-99 font-sub_title"
+              className="font-bold text-center text-yellow-300 text-1xl drop-shadow-2xl z-99 font-sub_title"
               variants={titleVariant}
               initial="hidden"
               animate={control}
@@ -139,8 +139,8 @@ function App() {
   const slidesData = [
     {
       image: "./ViaCapriPizzeria_Hero.jpg",
-      title: "ORDER ONLINE",
-      description: "WELCOME TO OUR SITE",
+      title: "FREE DELIVERY!",
+      description: "* UP TO 5 MILES, ON ORDERS ABOVE $30",
       buttonLabel: "ORDER NOW",
     },
     {
@@ -186,7 +186,7 @@ function App() {
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 100 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1, delay: 0.1 } },
+    visible: { opacity: 1, y: 0, transition: { duration: 1, delay: 0.2 } },
   };
 
   return (
@@ -205,7 +205,7 @@ function App() {
             pagination={{ clickable: true }}
             onSlideChange={handleSlideChange}
             autoplay={{
-              delay: 4000,
+              delay: 1000000,
               pauseOnMouseEnter: false,
               stopOnLastSlide: false,
               disableOnInteraction: false,
@@ -214,8 +214,8 @@ function App() {
             {slidesData.map((slide, index) => (
               <SwiperSlide key={index}>
                 <Slide
-                  title={slide.title}
-                  description={slide.description}
+                  title={slide.description}
+                  description={slide.title}
                   buttonLabel={slide.buttonLabel}
                   index={index}
                 >
