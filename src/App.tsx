@@ -138,41 +138,41 @@ function App() {
 
   const slidesData = [
     {
-      image: "./ViaCapriPizzeria_Hero.jpg",
+      image: "/ViaCapriPizzeria_Hero.jpg",
       title: "FREE DELIVERY!",
       description: "* UP TO 5 MILES, ON ORDERS ABOVE $30",
       buttonLabel: "ORDER NOW",
     },
     {
-      image: "./ViaCapriPizzeria_Mineira.jpg",
+      image: "/ViaCapriPizzeria_Mineira.jpg",
       title: "Slide 2 Title",
       description:
         "Descrição para o Slide 2. Adicione seu texto personalizado aqui.",
       buttonLabel: "Button 2 Label",
     },
     {
-      image: "./pepperoni.jpeg",
+      image: "/pepperoni.jpeg",
       title: "Slide 2 Title",
       description:
         "Descrição para o Slide 2. Adicione seu texto personalizado aqui.",
       buttonLabel: "Button 2 Label",
     },
     {
-      image: "./ViaCapriPizzeria_Hawaiian.jpg",
+      image: "/ViaCapriPizzeria_Hawaiian.jpg",
       title: "Slide 2 Title",
       description:
         "Descrição para o Slide 2. Adicione seu texto personalizado aqui.",
       buttonLabel: "Button 2 Label",
     },
     {
-      image: "./ViaCapriPizzeria_ChickenCatupiry.jpg",
+      image: "/ViaCapriPizzeria_ChickenCatupiry.jpg",
       title: "Slide 2 Title",
       description:
         "Descrição para o Slide 2. Adicione seu texto personalizado aqui.",
       buttonLabel: "Button 2 Label",
     },
     {
-      image: "./ViaCapriPizzeria_Hawaiian.jpg",
+      image: "/ViaCapriPizzeria_Hawaiian.jpg",
       title: "Slide 2 Title",
       description:
         "Descrição para o Slide 2. Adicione seu texto personalizado aqui.",
