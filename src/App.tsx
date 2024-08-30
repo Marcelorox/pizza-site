@@ -10,7 +10,7 @@ import Header from "./components/Header";
 import FooterPages from "./components/Footer";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { BiMap } from "react-icons/bi";
-import Modal from "./components/Modal";
+
 
 interface SlideProps {
   children: React.ReactNode;
@@ -191,7 +191,6 @@ function App() {
 
   return (
     <div className="relative">
-      <Modal />
       <div className="absolute "></div>
       <div className="w-full h-max">
         <Header />
@@ -205,7 +204,7 @@ function App() {
             pagination={{ clickable: true }}
             onSlideChange={handleSlideChange}
             autoplay={{
-              delay: 1000000,
+              delay: 1000,
               pauseOnMouseEnter: false,
               stopOnLastSlide: false,
               disableOnInteraction: false,
